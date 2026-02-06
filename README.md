@@ -1,1 +1,3 @@
 # JustSomeSimpleCalculator
+
+Simple calculator lol
