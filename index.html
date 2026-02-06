@@ -5,36 +5,122 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Simple Calculator</title>
 <style>
-  body { font-family: sans-serif; display: flex; justify-content: center; padding: 50px; }
-  #calculator { width: 300px; text-align: center; }
-  input { width: 100%; padding: 10px; font-size: 18px; box-sizing: border-box; margin-bottom: 10px; }
-  .buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
-  button { padding: 15px; font-size: 16px; cursor: pointer; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f2f5;
+    margin: 0;
+  }
+
+  #calculator {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 320px;
+  }
+
+  #calcDisplay {
+    width: 100%;
+    padding: 15px;
+    font-size: 24px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    text-align: right;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  button {
+    padding: 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #f7f7f7;
+    transition: all 0.2s ease;
+  }
+
+  button:hover {
+    background: #e0e0e0;
+  }
+
+  button.operator {
+    background: #ff9500;
+    color: #fff;
+  }
+
+  button.operator:hover {
+    background: #e08b00;
+  }
+
+  button.equal {
+    background: #4cd964;
+    color: #fff;
+  }
+
+  button.equal:hover {
+    background: #3bbf52;
+  }
+
+  button.clear {
+    background: #ff3b30;
+    color: #fff;
+  }
+
+  button.clear:hover {
+    background: #e02c1f;
+  }
+
+  @media (max-width: 360px) {
+    #calculator {
+      width: 90%;
+    }
+    button {
+      padding: 15px;
+      font-size: 16px;
+    }
+    #calcDisplay {
+      font-size: 20px;
+      padding: 10px;
+    }
+  }
 </style>
 </head>
 <body>
+
 <div id="calculator">
   <input type="text" id="calcDisplay" placeholder="0" readonly>
+
   <div class="buttons">
     <button onclick="calc('7')">7</button>
     <button onclick="calc('8')">8</button>
     <button onclick="calc('9')">9</button>
-    <button onclick="calc('/')">/</button>
+    <button onclick="calc('/')" class="operator">/</button>
 
     <button onclick="calc('4')">4</button>
     <button onclick="calc('5')">5</button>
     <button onclick="calc('6')">6</button>
-    <button onclick="calc('*')">*</button>
+    <button onclick="calc('*')" class="operator">*</button>
 
     <button onclick="calc('1')">1</button>
     <button onclick="calc('2')">2</button>
     <button onclick="calc('3')">3</button>
-    <button onclick="calc('-')">-</button>
+    <button onclick="calc('-')" class="operator">-</button>
 
     <button onclick="calc('0')">0</button>
-    <button onclick="clearCalc()">C</button>
-    <button onclick="calculate()">=</button>
-    <button onclick="calc('+')">+</button>
+    <button onclick="clearCalc()" class="clear">C</button>
+    <button onclick="calculate()" class="equal">=</button>
+    <button onclick="calc('+')" class="operator">+</button>
   </div>
 </div>
 
@@ -42,9 +128,11 @@
   function calc(value) {
     document.getElementById('calcDisplay').value += value;
   }
+
   function clearCalc() {
     document.getElementById('calcDisplay').value = '';
   }
+
   function calculate() {
     try {
       document.getElementById('calcDisplay').value = eval(document.getElementById('calcDisplay').value);
@@ -53,5 +141,6 @@
     }
   }
 </script>
+
 </body>
 </html>
