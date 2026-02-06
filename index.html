@@ -134,7 +134,7 @@
     try {
       document.getElementById('calcDisplay').value = eval(document.getElementById('calcDisplay').value);
     } catch(e) {
-      alert('Invalid!');
+      document.getElementById('calcDisplay').value = 'Error';
     }
   }
 </script>
