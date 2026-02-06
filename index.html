@@ -122,19 +122,40 @@
 </div>
 
 <script>
+ErrorText = 'Error';
+DontCalcWhen = ["undefined", "null", "NaN", "Infinity"];
+CalcDisplay = document.getElementById('calcDisplay');
+function ErrorFunc(t) {
+  if (t === "Error") {
+    CalcDisplay.value = ErrorText;
+    return true;
+  }
+  if (CalcDisplay.value === ErrorText && (t === "Stop" || t === "Clear")) {
+    CalcDisplay.value = '';
+    if (t === "Stop") {
+      return true;
+    }
+  }
+}
+
   function calc(value) {
-    document.getElementById('calcDisplay').value += value;
+    ErrorFunc("Clear");
+    if (DontCalcWhen.includes(CalcDisplay.value)) {
+      clearCalc();
+    }
+    CalcDisplay.value += value;
   }
 
   function clearCalc() {
-    document.getElementById('calcDisplay').value = '';
+    CalcDisplay.value = '';
   }
 
   function calculate() {
+    ErrorFunc("Stop");
     try {
-      document.getElementById('calcDisplay').value = eval(document.getElementById('calcDisplay').value);
+      CalcDisplay.value = eval(CalcDisplay.value);
     } catch(e) {
-      document.getElementById('calcDisplay').value = 'Error';
+      ErrorFunc("Error");
     }
   }
 </script>
